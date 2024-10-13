@@ -1,0 +1,17 @@
+{
+  "name": "@river/frontend",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^14.2.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "typescript": "^5.6.3"
+  }
+}

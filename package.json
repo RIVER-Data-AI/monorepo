@@ -1,0 +1,17 @@
+{
+  "name": "@river",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "concurrently": "concurrently --names \"frontend,backend\" --prefix-colors \"bgGreen.bold,bgMagenta.bold\"",
+    "dev": "npm run concurrently -- \"npm --prefix packages/frontend run dev\" \"npm --prefix packages/backend run dev\"",
+    "start": "npm run concurrently -- \"npm --prefix packages/frontend run start\" \"npm --prefix packages/backend run start\""
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.7",
+    "concurrently": "^9.0.1"
+  }
+}
