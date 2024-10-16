@@ -28,14 +28,14 @@ export const Button = ({
     : "storybook-button--secondary";
   return (
     <button
-      type="button"
       className={["storybook-button", `storybook-button--${size}`, mode].join(
         " ",
       )}
+      type="button"
       {...props}
     >
       {label}
-      <style jsx>{`
+      <style>{`
         button {
           background-color: ${backgroundColor ?? "transparent"};
         }

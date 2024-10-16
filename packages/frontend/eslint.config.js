@@ -3,16 +3,13 @@ import prettier from "eslint-plugin-prettier/recommended";
 import base from "../../eslint.base.mjs";
 import importPlugin from "eslint-plugin-import";
 import sortKeysFixPlugin from "eslint-plugin-sort-keys-fix";
+import reactPlugin from "eslint-plugin-react";
 
 export default tseslint.config(
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
   importPlugin.flatConfigs.recommended,
-  {
-    plugins: {
-      "sort-keys-fix": sortKeysFixPlugin,
-    },
-  },
+  reactPlugin.configs.flat.recommended,
   prettier,
   base,
   {
@@ -20,7 +17,23 @@ export default tseslint.config(
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
+    },
+    rules: {
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-sort-props": [
+        "warn",
+        {
+          callbacksLast: true,
+          shorthandFirst: true,
+        },
+      ],
+    },
+    plugins: {
+      "sort-keys-fix": sortKeysFixPlugin,
     },
   },
   {
