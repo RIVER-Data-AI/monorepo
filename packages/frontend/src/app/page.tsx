@@ -1,12 +1,13 @@
+"use client";
+
 import HealthCheck from "@/components/HealthCheck";
 
-export default function Home() {
+import styles from "./page.module.css";
+
+export default function HomePage() {
   return (
-    <div>
-      <div>hello world</div>
-      <div>
-        health check: <HealthCheck />
-      </div>
+    <div className={styles.page}>
+      <HealthCheck />
     </div>
   );
 }

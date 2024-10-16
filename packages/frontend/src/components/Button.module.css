@@ -1,0 +1,24 @@
+.button {
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 2px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.primary {
+  background: var(--river-primary);
+  color: var(--background);
+  border: 2px solid transparent;
+}
+
+.secondary {
+  background: var(--background);
+  color: var(--river-primary);
+  border: 2px solid var(--river-primary);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

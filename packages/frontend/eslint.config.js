@@ -36,6 +36,12 @@ export default tseslint.config(
           shorthandFirst: true,
         },
       ],
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        {
+          allowNumber: true,
+        },
+      ],
     },
     plugins: {
       "sort-keys-fix": sortKeysFixPlugin,

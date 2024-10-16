@@ -1,0 +1,6 @@
+.textarea {
+  border: 2px solid var(--river-primary);
+  padding: 1em;
+  border-radius: 2px;
+  resize: none;
+}

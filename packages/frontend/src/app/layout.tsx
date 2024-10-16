@@ -1,5 +1,7 @@
 import { type Metadata } from "next";
 
+import "./globals.css";
+
 export const metadata: Metadata = {
   description: "skeleton app",
   title: "river",
@@ -12,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div>{children}</div>
+      </body>
     </html>
   );
 }

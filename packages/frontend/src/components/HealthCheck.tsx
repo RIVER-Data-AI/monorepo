@@ -2,6 +2,8 @@
 
 import { useCallback, useState } from "react";
 
+import Button from "./Button";
+
 type Status = "initial" | "loading" | "success" | "error";
 
 function getLabel(status: Status) {
@@ -43,8 +45,10 @@ export default function HealthCheck() {
   }, [setStatus]);
 
   return (
-    <button disabled={status === "loading"} onClick={runHealthCheck}>
-      {getLabel(status)}
-    </button>
+    <Button
+      disabled={status === "loading"}
+      label={getLabel(status)}
+      onClick={runHealthCheck}
+    />
   );
 }
