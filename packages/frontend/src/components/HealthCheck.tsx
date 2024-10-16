@@ -9,8 +9,12 @@ export default function HealthCheck() {
 
   useEffect(() => {
     fetch("//localhost:3001/health")
-      .then(() => setStatus("success"))
-      .catch(() => setStatus("error"));
+      .then(() => {
+        setStatus("success");
+      })
+      .catch(() => {
+        setStatus("error");
+      });
   }, [setStatus]);
 
   switch (status) {

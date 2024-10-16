@@ -8,6 +8,7 @@
     "build": "npm run build --workspaces",
     "concurrently": "concurrently --names \"frontend,backend\" --prefix-colors \"bgGreen.bold,bgMagenta.bold\"",
     "dev": "npm run concurrently -- \"npm --prefix packages/frontend run dev\" \"npm --prefix packages/backend run dev\"",
+    "lint": "npm run lint --workspaces",
     "start": "npm run concurrently -- \"npm --prefix packages/frontend run start\" \"npm --prefix packages/backend run start\""
   },
   "devDependencies": {

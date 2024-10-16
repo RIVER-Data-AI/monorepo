@@ -14,8 +14,8 @@ function getLogger() {
         level: "debug",
         transport: {
           options: {
-            ignore: "pid,hostname",
             translateTime: "HH:MM:ss Z",
+            ignore: "pid,hostname",
           },
           target: "pino-pretty",
         },
