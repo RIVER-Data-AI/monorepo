@@ -10,10 +10,12 @@
     "dev": "npm run concurrently -- \"npm --prefix packages/frontend run dev\" \"npm --prefix packages/backend run dev\"",
     "lint": "npm run lint --workspaces",
     "start": "npm run concurrently -- \"npm --prefix packages/frontend run start\" \"npm --prefix packages/backend run start\"",
-    "test": "npm run test --workspaces"
+    "test": "npm run test --workspaces",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.7",
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "husky": "^9.1.6"
   }
 }
