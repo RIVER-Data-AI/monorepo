@@ -3,9 +3,7 @@ import fastify from "fastify";
 
 import router from "./routes";
 
-const PORT = process.env.BACKEND_PORT
-  ? parseInt(process.env.BACKEND_PORT, 10)
-  : 3001;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 
 function getLogger() {
   switch (process.env.NODE_ENV) {

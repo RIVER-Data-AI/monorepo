@@ -1,2 +1,11 @@
-node_modules
-.env
+# dependencies
+node_modules/
+
+# typescript
+*.tsbuildinfo
+
+# local env files
+.env*.local
+
+# production
+/dist

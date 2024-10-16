@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/recommended",
   "compilerOptions": {
+    "module": "preserve",
     "paths": {
       "@river/*": ["./packages/*"]
     }
