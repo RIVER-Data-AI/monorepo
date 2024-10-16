@@ -5,7 +5,7 @@ export default function Home() {
     <div>
       <div>hello world</div>
       <div>
-        health check: <HealthCheck />{" "}
+        health check: <HealthCheck />
       </div>
     </div>
   );

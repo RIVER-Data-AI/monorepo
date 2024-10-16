@@ -1,31 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
-type Status = "loading" | "success" | "error";
+type Status = "initial" | "loading" | "success" | "error";
 
-export default function HealthCheck() {
-  const [status, setStatus] = useState<Status>("loading");
-
-  useEffect(() => {
-    fetch("//localhost:3001/health")
-      .then(() => {
-        setStatus("success");
-      })
-      .catch(() => {
-        setStatus("error");
-      });
-  }, [setStatus]);
-
+function getLabel(status: Status) {
   switch (status) {
+    case "initial": {
+      return "run health check";
+    }
     case "loading": {
-      return <strong>PENDING</strong>;
+      return "loading...";
     }
     case "error": {
-      return <strong>FAIL</strong>;
+      return "FAILED";
     }
-    default: {
-      return <strong>OK</strong>;
+    case "success": {
+      return "OK";
     }
   }
+}
+
+export default function HealthCheck() {
+  const [status, setStatus] = useState<Status>("initial");
+
+  const runHealthCheck = useCallback(() => {
+    async function run() {
+      setStatus("loading");
+
+      await new Promise((ok) => setTimeout(ok, 200));
+
+      try {
+        await fetch("//localhost:3001/health");
+        setStatus("success");
+      } catch (e: unknown) {
+        console.log(e);
+        setStatus("error");
+      }
+    }
+
+    void run();
+  }, [setStatus]);
+
+  return (
+    <button disabled={status === "loading"} onClick={runHealthCheck}>
+      {getLabel(status)}
+    </button>
+  );
 }
