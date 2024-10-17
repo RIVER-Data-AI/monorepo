@@ -8,7 +8,7 @@ async function run() {
   );
 
   try {
-    await app.listen({ port: PORT });
+    await app.listen({ host: "0.0.0.0", port: PORT });
   } catch (err) {
     app.log.error(err);
     process.exit(1);

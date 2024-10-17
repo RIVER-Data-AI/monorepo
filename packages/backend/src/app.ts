@@ -8,27 +8,17 @@ import fastify from "fastify";
 
 type Env = "production" | "development" | "test";
 
-export function getLogger(env: Env) {
-  switch (env) {
-    case "development": {
-      return {
-        level: "debug",
-        transport: {
-          options: {
-            ignore: "pid,hostname",
-            translateTime: "HH:MM:ss Z",
-          },
-          target: "pino-pretty",
-        },
-      };
-    }
-    case "production": {
-      return true;
-    }
-    default: {
-      return false;
-    }
-  }
+function getLogger(_env: Env) {
+  return {
+    level: "debug",
+    transport: {
+      options: {
+        ignore: "pid,hostname",
+        translateTime: "HH:MM:ss Z",
+      },
+      target: "pino-pretty",
+    },
+  };
 }
 
 export async function createApp(env: Env) {
