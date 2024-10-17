@@ -1,5 +1,3 @@
-import { describe, expect, test } from "vitest";
-
 import { createApp } from "@/app.js";
 
 describe("with a simple app", () => {
