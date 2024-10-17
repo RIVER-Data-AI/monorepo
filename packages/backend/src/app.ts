@@ -1,10 +1,15 @@
+import { join } from "path";
+
+import { fastifyAutoload } from "@fastify/autoload";
 import fastifyCors from "@fastify/cors";
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastify from "fastify";
 
-import router from "./routes";
+type Env = "production" | "development" | "test";
 
-function getLogger() {
-  switch (process.env.NODE_ENV) {
+export function getLogger(env: Env) {
+  switch (env) {
     case "development": {
       return {
         level: "debug",
@@ -26,14 +31,20 @@ function getLogger() {
   }
 }
 
-export async function createApp() {
+export async function createApp(env: Env) {
   const app = fastify({
-    logger: getLogger(),
+    logger: getLogger(env),
   });
 
-  await app.register(fastifyCors);
+  if (env !== "test") {
+    await app.register(fastifyCors);
+    await app.register(fastifySwagger);
+    await app.register(fastifySwaggerUi);
+  }
 
-  await app.register(router);
+  await app.register(fastifyAutoload, {
+    dir: join(import.meta.dirname, "routes"),
+  });
 
   return app;
 }

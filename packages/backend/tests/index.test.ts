@@ -1,8 +1,10 @@
-import { createApp } from "@/app";
+import { describe, expect, test } from "vitest";
+
+import { createApp } from "@/app.js";
 
 describe("with a simple app", () => {
   test("it passes a health check", async function () {
-    const app = await createApp();
+    const app = await createApp("test");
 
     const response = await app.inject({
       method: "GET",

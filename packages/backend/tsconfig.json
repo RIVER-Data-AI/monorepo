@@ -1,11 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "module": "nodenext",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "module": "preserve",
-    "target": "es2023"
+    }
   }
 }
