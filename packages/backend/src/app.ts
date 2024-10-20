@@ -22,11 +22,11 @@ export function getLogger(env: Env) {
         },
       };
     }
-    case "production": {
-      return true;
+    case "test": {
+      return false;
     }
     default: {
-      return false;
+      return true;
     }
   }
 }
