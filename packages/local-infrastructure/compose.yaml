@@ -1,0 +1,13 @@
+version: ‘3.7'
+
+services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    networks:
+      - emulation
+    ports: 
+      - 8000:8000
+
+networks:
+  emulation:
+    driver: bridge
