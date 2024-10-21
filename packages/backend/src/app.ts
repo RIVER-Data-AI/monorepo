@@ -17,11 +17,14 @@ type Env = "production" | "development" | "test";
 const schema = {
   properties: {
     DYNAMO_DB_ENDPOINT_URL: {
-      default: "fixme",
       type: "string",
     },
     DYNAMO_DB_REGION: {
       default: "us-west-2",
+      type: "string",
+    },
+    DYNAMO_DB_TABLE_NAME: {
+      default: "data",
       type: "string",
     },
     PORT: {
@@ -29,7 +32,7 @@ const schema = {
       type: "string",
     },
   },
-  required: ["DYNAMO_DB_ENDPOINT_URL", "DYNAMO_DB_REGION", "PORT"],
+  required: ["DYNAMO_DB_REGION", "DYNAMO_DB_TABLE_NAME", "PORT"],
   type: "object",
 };
 

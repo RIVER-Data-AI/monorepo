@@ -6,7 +6,7 @@ const client = new DynamoDB.DocumentClient({
   region: process.env.DYNAMO_DB_REGION,
 });
 
-const table = "data";
+const table = process.env.DYNAMO_DB_TABLE_NAME;
 
 export const Foo = new Entity(
   {
