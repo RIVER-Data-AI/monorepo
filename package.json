@@ -5,12 +5,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build --workspaces --if-present",
     "concurrently": "concurrently --names \"frontend,backend\" --prefix-colors \"bgGreen.bold,bgMagenta.bold\"",
     "dev": "npm run concurrently -- \"npm --prefix packages/frontend run dev\" \"npm --prefix packages/backend run dev\"",
-    "lint": "npm run lint --workspaces",
+    "lint": "npm run lint --workspaces --if-present",
     "start": "npm run concurrently -- \"npm --prefix packages/frontend run start\" \"npm --prefix packages/backend run start\"",
-    "test": "npm run test --workspaces",
+    "test": "npm run test --workspaces --if-present",
     "prepare": "husky"
   },
   "devDependencies": {
