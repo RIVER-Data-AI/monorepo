@@ -1,54 +1,52 @@
-import { CreateTableCommand, CreateTableCommandInput, DynamoDBClient } from "@aws-sdk/client-dynamodb"
+import { CreateTableCommandInput } from "@aws-sdk/client-dynamodb";
 
-
-export const schema: CreateTableCommandInput =
-{
-  "TableName": "data",
-  "KeySchema": [
+export const schema: CreateTableCommandInput = {
+  AttributeDefinitions: [
     {
-      "AttributeName": "pk",
-      "KeyType": "HASH"
+      AttributeName: "pk",
+      AttributeType: "S",
     },
     {
-      "AttributeName": "sk",
-      "KeyType": "RANGE"
-    }
+      AttributeName: "sk",
+      AttributeType: "S",
+    },
+    {
+      AttributeName: "gsi1pk",
+      AttributeType: "S",
+    },
+    {
+      AttributeName: "gsi1sk",
+      AttributeType: "S",
+    },
   ],
-  "AttributeDefinitions": [
+  BillingMode: "PAY_PER_REQUEST",
+  GlobalSecondaryIndexes: [
     {
-      "AttributeName": "pk",
-      "AttributeType": "S"
-    },
-    {
-      "AttributeName": "sk",
-      "AttributeType": "S"
-    },
-    {
-      "AttributeName": "gsi1pk",
-      "AttributeType": "S"
-    },
-    {
-      "AttributeName": "gsi1sk",
-      "AttributeType": "S"
-    }
-  ],
-  "GlobalSecondaryIndexes": [
-    {
-      "IndexName": "gsi1pk-gsi1sk-index",
-      "KeySchema": [
+      IndexName: "gsi1pk-gsi1sk-index",
+      KeySchema: [
         {
-          "AttributeName": "gsi1pk",
-          "KeyType": "HASH"
+          AttributeName: "gsi1pk",
+          KeyType: "HASH",
         },
         {
-          "AttributeName": "gsi1sk",
-          "KeyType": "RANGE"
-        }
+          AttributeName: "gsi1sk",
+          KeyType: "RANGE",
+        },
       ],
-      "Projection": {
-        "ProjectionType": "ALL"
-      }
-    }
+      Projection: {
+        ProjectionType: "ALL",
+      },
+    },
   ],
-  "BillingMode": "PAY_PER_REQUEST"
-}
+  KeySchema: [
+    {
+      AttributeName: "pk",
+      KeyType: "HASH",
+    },
+    {
+      AttributeName: "sk",
+      KeyType: "RANGE",
+    },
+  ],
+  TableName: "data",
+};

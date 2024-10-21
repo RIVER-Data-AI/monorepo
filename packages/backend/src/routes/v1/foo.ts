@@ -1,11 +1,8 @@
 import { FastifyInstance } from "fastify";
+import { ZodTypeProvider } from "fastify-type-provider-zod";
+import { z } from "zod";
 
 import { Foo } from "@/db.js";
-
-// TODO Fix types
-interface FooPostRequest {
-  foo: string;
-}
 
 export default function router(app: FastifyInstance) {
   app.get(
@@ -17,53 +14,46 @@ export default function router(app: FastifyInstance) {
     },
     async function handler() {
       const foos = await Foo.scan.go();
+
       return foos.data;
     },
   );
 
-  app.get(
+  app.withTypeProvider<ZodTypeProvider>().get(
     "/foo/:id",
     {
       schema: {
         description: "get a foo :)",
-        params: {
-          properties: {
-            id: { type: "string" },
-          },
-          type: "object",
-        },
+        params: z.object({
+          id: z.string(),
+        }),
       },
     },
     async function handler(request) {
-      // TODO Fix types
-      const id = (request.params as Record<string, string>).id;
-      const foos = await Foo.get({ bar: "bar", id }).go();
+      const foos = await Foo.get({
+        bar: "bar",
+        id: request.params.id,
+      }).go();
+
       return foos.data;
     },
   );
 
-  app.post(
+  app.withTypeProvider<ZodTypeProvider>().post(
     "/foo",
     {
       schema: {
-        body: {
-          properties: {
-            foo: { type: "string" },
-          },
-          type: "object",
-        },
+        body: z.object({
+          foo: z.string(),
+        }),
         description: "make a foo :)",
       },
     },
     async function handler(request) {
-      // TODO Fix types
-      const body = request.body as FooPostRequest;
-
-      console.log(body.foo);
-
-      const foo = await Foo.create({ bar: "bar", id: body.foo }).go();
+      const foo = await Foo.create({ bar: "bar", id: request.body.foo }).go();
 
       console.log(foo);
+
       return "OK";
     },
   );
